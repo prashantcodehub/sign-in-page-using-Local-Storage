@@ -5,7 +5,7 @@ const user_Confirm_Password = document.getElementById('password_confirm');
 const sign_In_button = document.getElementById('sign_in_button');
 const login = document.getElementById('login');
 
-localStorage.users=[{a : aa}];
+localStorage.users;
 
 function check_if_user_exist(e_id){
 
@@ -29,21 +29,23 @@ function ADD_new_user(Uname, mail_id, pwd ) {
         Email_id : mail_id,
         Password : pwd,
     };
-
-    //let users = JSON.parse(localStorage.getItem('users')); // users will become an array of object 
-    //if (users === null) {  // 
-     //   users = [];
-    //}
+    let users = JSON.parse(localStorage.getItem('users')); // users will become an array of object 
+    if (users === null) {  // 
+        users = [];
+    }
 
     users.push(new_User_obj);
     localStorage.setItem('users',JSON.stringify(users)); 
 
-    sessionStorage.setItem('loggenInUser',JSON.stringify(userObj));
-    firstName.value='';
-    lastName.value='';
-    email.value='';
-    password.value='';
-    confirmPassword.value='';
+    user_name.value = '';
+    user_email.value = '';
+    user_Password.value = '';
+    user_Confirm_Password.value = '';
+
+    setTimeout(() => {
+      window.location.href = 'login.html';
+    }, 1000);
+
     alert('sign up successful');
 
 }
@@ -86,9 +88,6 @@ sign_In_button.addEventListener('click',(event) =>{
     }
 } )
 
-/*
 login.addEventListener('click', () =>{
-    location.href='';
+    location.href='login.html';
 })
-
-*/
