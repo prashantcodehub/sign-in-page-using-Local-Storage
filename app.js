@@ -5,6 +5,8 @@ const user_Confirm_Password = document.getElementById('password_confirm');
 const sign_In_button = document.getElementById('sign_in_button');
 const login = document.getElementById('login');
 
+localStorage.users=[{a : aa}];
+
 function check_if_user_exist(e_id){
 
     let usres = JSON.parse(localStorage.getItem('users')); // user is a array of obj
@@ -20,7 +22,6 @@ function check_if_user_exist(e_id){
     }
 }
 
-
 // adding a new user to the localstorage in a JSON format 
 function ADD_new_user(Uname, mail_id, pwd ) {
     let new_User_obj = {
@@ -29,16 +30,24 @@ function ADD_new_user(Uname, mail_id, pwd ) {
         Password : pwd,
     };
 
-    let users = JSON.parse(localStorage.getItem('users')); // users will become an array of object 
-    if (users === null) {  // 
-        users = [];
-    }
+    //let users = JSON.parse(localStorage.getItem('users')); // users will become an array of object 
+    //if (users === null) {  // 
+     //   users = [];
+    //}
 
     users.push(new_User_obj);
     localStorage.setItem('users',JSON.stringify(users)); 
 
+    sessionStorage.setItem('loggenInUser',JSON.stringify(userObj));
+    firstName.value='';
+    lastName.value='';
+    email.value='';
+    password.value='';
+    confirmPassword.value='';
+    alert('sign up successful');
 
 }
+
 
 // on clicking the sign u button 
 sign_In_button.addEventListener('click',(event) =>{
@@ -63,7 +72,7 @@ sign_In_button.addEventListener('click',(event) =>{
         }
 
         else {
-            if (localStorage.getItem(users)) {  // c
+            if (localStorage.getItem('users')) { 
                 if (check_if_user_exist(user_email.value)) {
                     alert(" user alrady exist ! ")
                 }
